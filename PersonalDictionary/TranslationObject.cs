@@ -7,11 +7,11 @@
     {
         private string word;
         private string translation;
-        public TranslationObject(string word, string translation)
+        public TranslationObject(string word, string translation, bool status)
         {
             this.Word = word;
             this.Translation = translation;
-            this.Status = false;
+            this.Status = status;
         }
         public string Word
         {
@@ -44,9 +44,27 @@
 
         public bool Status { get; set; }
 
+        public void AddNewTranslation(string translation, bool removeOldTranslation)
+        {
+            if (removeOldTranslation)
+            {
+                this.Translation = translation;
+            }
+            else
+            {
+                this.Translation += ",\n" + translation;
+            }
+        }
+
+        public bool Equals(ITranslationObject other)
+        {
+            bool areEqual = this.Word.Equals(other.Word, StringComparison.CurrentCultureIgnoreCase);
+            return areEqual;
+        }
+
         public override string ToString()
         {
-            string text = string.Format("{0}${1};", this.word, this.translation);
+            string text = string.Format("{0}${1}${2};", this.word, this.translation, this.Status.ToString());
             return text;
         }
     }

@@ -1,7 +1,8 @@
-﻿namespace PersonalDictionary.Contracts
+﻿using System.Collections.Generic;
+namespace PersonalDictionary.Contracts
 {
     public interface IWriter
     {
-        void Write(ITranslationObject translationObject);
+        void Write(IList<ITranslationObject> translationObjects);
     }
 }

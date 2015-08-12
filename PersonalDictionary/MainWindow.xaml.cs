@@ -17,41 +17,49 @@ namespace PersonalDictionary
 {
     using Contracts;
     using WPFs;
+    using Factory;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        private IReader reader;
+        private Window addingWordWindow;
+        private ITranslationObjectsFactory factory;
 
         public MainWindow()
         {
             this.InitializeComponent();
-            this.reader = new Reader();
-            this.LoadItems();
+            this.addingWordWindow = new AddingWindow();
+            factory = TranslationObjectsFactory.GetFactoryInstance();
+            this.LoadItemsToList();
         }
 
         private void AddNewWord(object sender, RoutedEventArgs e)
         {
-            var addingWordWindow = new AddingWindow(new Writer());
-            addingWordWindow.ShowDialog();
-            this.LoadItems();
+            this.addingWordWindow.ShowDialog();
+            this.LoadItemsToList();
         }
 
         private void SortItemsInTheList(object sender, RoutedEventArgs e)
         {
-
+            //TODO: Sort items in the list
         }
 
-        private void LoadItems()
+
+        private void LoadItemsToList()
         {
+            var list = factory.GetData();
             this.listWithEnglsihWords.Items.Clear();
-            var words = reader.Words();
-            foreach (var word in words)
-	        {
-                this.listWithEnglsihWords.Items.Add(word.Word);
-	        }
+            foreach (var data in list)
+            {
+                this.listWithEnglsihWords.Items.Add(data.Word);
+            }
+        }
+
+        private void GetWordTranslationOnSelectionChangeEvent(object sender, SelectionChangedEventArgs e)
+        {
+            //TODO: Get the translation from clicking on word in the list.
         }
 
     }

@@ -1,13 +1,19 @@
 ﻿<Window x:Class="PersonalDictionary.WPFs.AddingWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="AddingWindow" Height="429.525" Width="701" ResizeMode="NoResize">
+        Title="Adding" Height="429.525" Width="701" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+    <Window.Background>
+        <RadialGradientBrush>
+            <GradientStop Color="#FF060202" Offset="0"/>
+            <GradientStop Color="#FFB5F9F9" Offset="1"/>
+        </RadialGradientBrush>
+    </Window.Background>
     <Grid>
-        <Button Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="664" Margin="10,323,0,0" Height="50" Click="AddToList"/>
-        <TextBox x:Name="wordTextBox" HorizontalAlignment="Left" Height="26" Margin="119,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="555" ForceCursor="True"/>
+        <Button Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="664" Margin="10,323,0,0" Height="50" Click="AddToList" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="wordTextBox" HorizontalAlignment="Left" Height="26" Margin="119,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="555" ForceCursor="True" Grid.ColumnSpan="2"/>
         <Label Content="Word:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,28,0,0" Width="66"/>
         <Label Content="Translation:&#xD;&#xA;" HorizontalAlignment="Left" Margin="23,80,0,0" VerticalAlignment="Top" Height="26" Width="97"/>
-        <RichTextBox x:Name="translationTextBox" HorizontalAlignment="Left" Height="227" Margin="119,80,0,0" VerticalAlignment="Top" Width="555">
+        <RichTextBox x:Name="translationTextBox" HorizontalAlignment="Left" Height="227" Margin="119,80,0,0" VerticalAlignment="Top" Width="555" Grid.ColumnSpan="2">
             <FlowDocument/>
         </RichTextBox>
 

@@ -4,6 +4,6 @@ namespace PersonalDictionary.Contracts
     
     public interface IReader
     {
-        IList<ITranslationObject> Words();
+        string GetText();
     }
 }

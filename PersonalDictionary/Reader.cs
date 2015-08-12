@@ -5,32 +5,19 @@
     using Contracts;
     using System.IO;
    
-    class Reader : IReader
+    public class Reader : IReader
     {
         private const string filePath = "translationDatabase.txt";
-        public IList<ITranslationObject> Words()
+        public string GetText()
         {
-            var words = new List<ITranslationObject>();
+            var text = string.Empty;
             using (StreamReader reader = new StreamReader(filePath))
             {
-                    string text = reader.ReadToEnd();
-                    string[] splitToWords = text.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-                    foreach (var word in splitToWords)
-                    {
-                        var tansObj = GetTranslationObjects(word);
-                        words.Add(tansObj);
-                    }
-                    
+                text = reader.ReadToEnd();
             }
 
-            return words;
+            return text;
         }
-        private ITranslationObject GetTranslationObjects(string text)
-        {
-            string[] elements = text.Split(new char[]{'$'}, StringSplitOptions.RemoveEmptyEntries);
-            string word = elements[0];
-            string translation = elements[1];
-            return new TranslationObject(word, translation);
-        }
+       
     }
 }

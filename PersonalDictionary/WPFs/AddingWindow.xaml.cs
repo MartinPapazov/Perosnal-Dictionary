@@ -15,35 +15,50 @@ using System.Windows.Shapes;
 namespace PersonalDictionary.WPFs
 {
     using Contracts;
+    using Factory;
     /// <summary>
     /// Interaction logic for AddingWindow.xaml
     /// </summary>
     public partial class AddingWindow : Window
     {
-        private IWriter writer;
-        public AddingWindow(IWriter writer)
+        private ITranslationObjectsFactory factory;
+
+        public AddingWindow()
         {
             InitializeComponent();
-            this.writer = writer;
+            this.factory = TranslationObjectsFactory.GetFactoryInstance();
         }
 
         private void AddToList(object sender, RoutedEventArgs e)
         {
             string word = this.wordTextBox.Text;
-            string translation = new TextRange(translationTextBox.Document.ContentStart, translationTextBox.Document.ContentEnd).Text;
+            string translation = new TextRange(this.translationTextBox.Document.ContentStart, this.translationTextBox.Document.ContentEnd).Text;
             try
             {
-                var newObject = new TranslationObject(word, translation);
-                writer.Write(newObject);
+                var newObject = new TranslationObject(word, translation, false);
+                factory.AddNewData(newObject);
             }
             catch (ArgumentNullException)
             {
                 MessageBox.Show("You can't leave empty boxes!!", "WRONG!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            this.Close();
+            this.ClearTextFields();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+            this.ClearTextFields();
+            
         }
 
 
+        private void ClearTextFields()
+        {
+            this.wordTextBox.Text = string.Empty;
+            this.translationTextBox.Document.Blocks.Clear();
+            this.Hide();
+        }
     }
 }
