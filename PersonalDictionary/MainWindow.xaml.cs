@@ -33,6 +33,7 @@ namespace PersonalDictionary
             this.addingWordWindow = new AddingWindow();
             factory = TranslationObjectsFactory.GetFactoryInstance();
             this.LoadItemsToList();
+            
         }
 
         private void AddNewWord(object sender, RoutedEventArgs e)
@@ -41,17 +42,20 @@ namespace PersonalDictionary
             this.LoadItemsToList();
         }
 
-        private void SortItemsInTheList(object sender, RoutedEventArgs e)
-        {
-            //TODO: Sort items in the list
-        }
-
-
         private void LoadItemsToList()
         {
-            var list = factory.GetData();
             this.listWithEnglsihWords.Items.Clear();
-            foreach (var data in list)
+            var translationObjrctCollection = factory.GetData();
+            if (!(bool)ascendingRadioButton.IsChecked)
+            {
+                translationObjrctCollection = translationObjrctCollection.OrderBy(obj => obj.Word).ToList();
+            }
+            else
+            {
+                translationObjrctCollection = translationObjrctCollection.OrderByDescending(obj => obj.Word).ToList();
+            }
+
+            foreach (var data in translationObjrctCollection)
             {
                 this.listWithEnglsihWords.Items.Add(data.Word);
             }
@@ -59,7 +63,29 @@ namespace PersonalDictionary
 
         private void GetWordTranslationOnSelectionChangeEvent(object sender, SelectionChangedEventArgs e)
         {
-            //TODO: Get the translation from clicking on word in the list.
+            var translationObjectCollection = factory.GetData();
+            var item = this.listWithEnglsihWords.SelectedItem;
+            if (item != null)
+            {
+                string word = item.ToString();
+                var translationObject = translationObjectCollection.Where(obj => obj.Word == word).FirstOrDefault();
+                this.translationText.Text = translationObject.Translation;
+                this.wordLabel.Content = translationObject.Word;
+                if (translationObject.Status)
+                {
+                    this.wordLabel.Foreground = Brushes.Green;
+                }
+                else
+                {
+                    this.wordLabel.Foreground = Brushes.Red;
+                }
+            }
+            
+        }
+
+        private void SortList(object sender, RoutedEventArgs e)
+        {
+            this.LoadItemsToList();
         }
 
     }

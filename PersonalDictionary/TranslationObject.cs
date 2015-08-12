@@ -52,7 +52,7 @@
             }
             else
             {
-                this.Translation += ",\n" + translation;
+                this.Translation += "," + translation;
             }
         }
 

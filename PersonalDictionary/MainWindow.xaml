@@ -1,20 +1,21 @@
 ﻿<Window x:Class="PersonalDictionary.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="510.726" Width="700" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="608.076" Width="815" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Grid HorizontalAlignment="Left" Width="690">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="87*"/>
             <ColumnDefinition Width="82*"/>
             <ColumnDefinition Width="77*"/>
         </Grid.ColumnDefinitions>
-        <Button Content="ADD" HorizontalAlignment="Left" Margin="93,10,0,0" VerticalAlignment="Top" Width="113" Height="41" Grid.Column="2" Click="AddNewWord"/>
-        <Button Content="Sort
-" HorizontalAlignment="Left" Margin="33,10,0,0" VerticalAlignment="Top" Width="115" Height="41" Click="SortItemsInTheList"/>
-        <ListBox x:Name="listWithEnglsihWords" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="375" Margin="10,95,0,0" VerticalAlignment="Top" Width="227" RenderTransformOrigin="-0.016,0.515" Background="#FFCBCBCB" SelectionChanged="GetWordTranslationOnSelectionChangeEvent"/>
-        <RadioButton Content="RadioButton" HorizontalAlignment="Left" Margin="111,61,0,0" VerticalAlignment="Top" GroupName="sortOrder" Grid.ColumnSpan="2"/>
-        <RadioButton Content="RadioButton" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top"/>
-        <TextBlock x:Name="translationText"  Grid.Column="1" HorizontalAlignment="Left" Margin="10,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="375" Width="426"><Run/><LineBreak/><Run/></TextBlock>
-        <Separator HorizontalAlignment="Left" Height="145" Margin="10,10,0,0" VerticalAlignment="Top" Width="670" Grid.ColumnSpan="3" RenderTransformOrigin="0.497,0.495"/>
+        <Button Content="ADD" HorizontalAlignment="Left" Margin="202,10,-99,0" VerticalAlignment="Top" Width="113" Height="41" Grid.Column="2" Click="AddNewWord"/>
+        <ListBox x:Name="listWithEnglsihWords" HorizontalAlignment="Left" Height="474" Margin="10,95,0,0" VerticalAlignment="Top" Width="227" RenderTransformOrigin="-0.016,0.515" Background="#FFCBCBCB" SelectionChanged="GetWordTranslationOnSelectionChangeEvent" Foreground="#FF130303"/>
+        <RadioButton x:Name="ascendingRadioButton" Content="Descending" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top" GroupName="sortOrder" Click="SortList"/>
+        <RadioButton x:Name="descendingRadioButton" Content="Ascending" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" GroupName="sortOrder" Click="SortList"/>
+        <TextBlock x:Name="translationText"  Grid.Column="1" HorizontalAlignment="Left" Margin="39,175,-99,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="394" Width="506"><Run/><LineBreak/><Run/></TextBlock>
+        <Separator HorizontalAlignment="Left" Height="145" Margin="10,10,-99,0" VerticalAlignment="Top" Width="779" Grid.ColumnSpan="3" RenderTransformOrigin="0.497,0.495"/>
+        <Label x:Name="wordLabel" Content="" Grid.Column="1" Margin="10,84,-109,0" RenderTransformOrigin="0.438,-1.115" Width="545" Grid.ColumnSpan="2" Height="66" FontFamily="Segoe UI Black" FontSize="36" FontWeight="Bold" Background="White" BorderThickness="2" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Center" Foreground="#FF970E0E"/>
+        <Separator Grid.Column="2" HorizontalAlignment="Left" Height="100" Margin="325,155,-209,0" VerticalAlignment="Top" Width="100"/>
+        <Separator Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="39,106,-68,0" VerticalAlignment="Top" Width="475" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>

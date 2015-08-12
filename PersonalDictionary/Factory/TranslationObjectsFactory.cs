@@ -25,6 +25,10 @@
             return instance;
         }
 
+        /// <summary>
+        /// Get text from the Reader. Make the text to TranslationObjects and add them to List.
+        /// </summary>
+        /// <returns>IList<ITranslationObject></returns>
         public IList<ITranslationObject> GetData()
         {
             
